@@ -17,22 +17,32 @@ clim$altitude <- as.numeric(clim$altitude)
 clim$p_mean <- gsub(",", "", clim$p_mean)
 clim$p_mean <- as.numeric(clim$p_mean)
 
-# Let's plot the map
-library(ggplot2) 
-install.packages("maps")
-library(maps)
+# Let's plot the map  
+library(ggplot2)  
+library(dplyr)  # Load dplyr to use the pipe operator  
+# Install the maps package if not already installed  
+if (!requireNamespace("maps", quietly = TRUE)) {  
+  install.packages("maps")  
+}  
+library(maps)  
 
-states <- map_data("France")
+# Load map data for France  
+states <- map_data("world") %>%  
+  filter(region == "France")  
 
-coordinates <- data.frame(
-  clim$lon,  # longitudes  
-  clim$lat   #  latitudes  
-)
+# Create a data frame for coordinates
+coordinates <- data.frame(  
+  lon = clim$lon,  # longitudes  
+  lat = clim$lat   # latitudes  
+)  
 
+# Plotting the map  
 ggplot() +  
   geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = "lightblue", color = "black") +   
-  geom_point(data = coordinates, aes(x = lon, y = lat), color = "red", size = 3) +  
-  coord_fixed(1.3)
+  geom_point(data = coordinates, aes(x = lon, y = lat), color = "purple", size = 3) +  
+  coord_fixed(1.3) +  
+  theme_minimal() +   
+  labs(title = "Map of France with the 36 stations", x = "Longitude", y = "Latitude") 
 
 # Exercise 1: Lets test all three spatial attributes, i.e latitude, longitude, and altitude, as explanatorz variables for the mean annual temperature
 # Let's first exclude the two high mountain extremes
