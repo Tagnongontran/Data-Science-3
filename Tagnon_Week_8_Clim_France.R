@@ -100,6 +100,19 @@ splot$plane3d(mdl2)
 
 # Summary output
 summary(mdl2)
+#  lm(formula = t_mean ~ altitude + lat, data = climfrar)
+#Residuals:
+#  Min       1Q   Median       3Q      Max 
+#-1.79206 -0.27571 -0.00556  0.30536  2.71871 
+#Coefficients:
+#  Estimate Std. Error t value Pr(>|t|)    
+#(Intercept) 37.9147567  2.4828724   15.27 5.68e-16 ***
+#  altitude    -0.0062643  0.0008443   -7.42 2.34e-08 ***
+#  lat         -0.5465325  0.0532610  -10.26 1.72e-11 ***
+#  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#Residual standard error: 0.7268 on 31 degrees of freedom
+#Multiple R-squared:  0.8292,	Adjusted R-squared:  0.8182 
+#F-statistic: 75.26 on 2 and 31 DF,  p-value: 1.268e-12
 
 # The smallest difference between what our model predicts and what we actually measured is −1.79°C, and the largest difference is 2.72°C.
 # For a good model, we want the differences (residuals) to be evenly spread around zero, but in this case, they aren't completely even. This means that the model sometimes makes predictions that are quite different from the actual measurements.
